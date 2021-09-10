@@ -1,6 +1,7 @@
 import execPromise from '../helpers/promise';
 
 interface Auth {
+  fullname: string;
   email: string;
   password: string;
 }
@@ -11,8 +12,8 @@ export default {
     return execPromise('SELECT email FROM users WHERE email=?', [email])
   },
 
-  signUp: ({email, password}: Auth) => {
-   return execPromise('INSERT INTO users (email, password) VALUES (?, ?)', [email, password])
+  signUp: ({fullname, email, password}: Auth) => {
+   return execPromise('INSERT INTO users (fullname, email, password) VALUES (?, ?, ?)', [fullname, email, password])
  },
 
  signIn: (email: string) => {
